@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+
+
 android {
     compileSdkVersion 26
     defaultConfig {
@@ -20,9 +22,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
 }
 
+
 dependencies {
+
+    ext{
+        lifecycle = '1.1.0'
+        lifecycleRuntime = '1.1.0'
+    }
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -30,4 +41,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    //arch
+    compile "android.arch.lifecycle:runtime:$ext.lifecycleRuntime"
+    compile "android.arch.lifecycle:extensions:$ext.lifecycle"
+    annotationProcessor "android.arch.lifecycle:compiler:$ext.lifecycle"
 }
